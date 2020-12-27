@@ -28,6 +28,7 @@
 #ifdef TARGET_HW_MDSS_HDMI
 #include "mdss_dba_utils.h"
 #endif
+
 #define DT_CMD_HDR 6
 #define MIN_REFRESH_RATE 48
 #define DEFAULT_MDP_TRANSFER_TIME 14000
@@ -1223,9 +1224,15 @@ static struct panel_param_val_map acl_map[ACL_STATE_NUM] = {
 	{"1", "qcom,mdss-dsi-acl-on-command"},
 };
 
+static struct panel_param_val_map seed_map[SEED_STATE_NUM] = {
+	{"VBT", "qcom,mdss-dsi-seed-off-command"},
+	{"STD", "qcom,mdss-dsi-seed-on-command"},
+};
+
 static struct panel_param mdss_dsi_panel_param[PARAM_ID_NUM] = {
 	{"HBM", hbm_map, HBM_STATE_NUM, HBM_OFF_STATE, HBM_OFF_STATE, false},
 	{"ACL", acl_map, ACL_STATE_NUM, ACL_OFF_STATE, ACL_OFF_STATE, false},
+	{"SEED", seed_map, SEED_STATE_NUM, SEED_OFF_STATE, SEED_OFF_STATE, false},
 };
 
 static int mdss_panel_parse_param_prop(struct device_node *np,
